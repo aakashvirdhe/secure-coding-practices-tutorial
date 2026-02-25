@@ -1,0 +1,287 @@
+Secure Coding Practices  
+Duration: 2 days
+
+---
+
+## General Overview
+
+### 1. Overview of Cyber Security Attacks on Source Code
+
+- **Common Attacks:**  
+  - Injection attacks (SQL, Command, LDAP, etc.)
+  - Cross-Site Scripting (XSS)
+  - Cross-Site Request Forgery (CSRF)
+  - Buffer overflows
+  - Insecure deserialization
+  - Broken authentication and session management
+  - Sensitive data exposure
+
+- **Why Systems Get Vulnerable:**  
+  - Lack of input validation
+  - Poor authentication and authorization
+  - Insecure cryptographic storage
+  - Misconfigured security settings
+  - Use of vulnerable components
+
+- **Tools to Assess Vulnerabilities:**  
+  - Static Application Security Testing (SAST) tools
+  - Dynamic Application Security Testing (DAST) tools
+  - Fuzz testing tools
+  - Vulnerability scanners (e.g., Nessus, OpenVAS)
+  - OSINT Framework for reconnaissance: https://osintframework.com/
+  - Shodan for monitoring vulnerabilities: https://www.shodan.io/
+
+---
+
+## 2. Secure Software Development Life Cycle (SSDLC)
+
+### Secure Software Requirements
+
+- **SMART Security Requirements:**  
+  - **S**pecific: Clearly defined and unambiguous  
+  - **M**easurable: Quantifiable to track progress  
+  - **A**chievable: Realistic and attainable  
+  - **R**elevant: Aligned with business and security goals  
+  - **T**ime-bound: Defined timelines for implementation
+
+- **Security Requirements Gathering:**  
+  - Identify assets, threats, and vulnerabilities
+  - Define security objectives and controls
+
+### Secure Software Design Principles
+
+- **Principle of Least Privilege:** Grant only necessary permissions.
+- **Defense in Depth:** Use multiple layers of security.
+- **Fail Securely:** Ensure failures do not expose vulnerabilities.
+- **Separation of Duties:** Divide responsibilities to reduce risk.
+- **Keep Security Simple:** Avoid unnecessary complexity.
+
+### Secure Code Programming
+
+- **CERT Secure Coding Standards:**  
+  - Guidelines for secure coding in C, C++, Java, etc.  
+  - https://wiki.sei.cmu.edu/confluence/display/seccode
+
+- **SANS Top 25 Software Errors:**  
+  - List of the most dangerous software errors  
+  - https://www.sans.org/top25-software-errors
+
+### Secure Artifacts and Device Protection
+
+- Secure deployment of binaries and configuration files
+- Hardening target machines (patching, firewall, least privilege)
+- Protecting devices over Ethernet (network segmentation, secure protocols)
+
+---
+
+## 3. Cryptographic Practices
+
+- **Confidentiality:** Use strong encryption (e.g., AES, not hacked till date)
+- **Integrity:** Use hashing and digital signatures
+- **Availability:** Ensure redundancy and failover mechanisms
+
+- **Encryption/Decryption Tools:**  
+  - https://cryptii.com/
+
+- **Finding Vulnerabilities:**  
+  - Use OSINT Framework, domain name lookups (whois, Domain Dossier)
+  - Scan for open ports (Zenmap)
+  - Identify OS and search for CVEs: https://www.cve.org/
+  - Calculate vulnerability scores:  
+    - https://www.first.org/cvss/calculator/3-0  
+    - https://chandanbn.github.io/cvss/
+
+- **Example CVE Tracking:**  
+  - CVE-2025-7425: https://www.cve.org/CVERecord?id=CVE-2025-7425  
+  - CVSS Score Examples:  
+    - 7.8: https://chandanbn.github.io/cvss/#CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:H  
+    - 0: https://chandanbn.github.io/cvss/#CVSS:3.1/AV:L/AC:H/PR:N/UI:N/S:C/C:N/I:N/A:N
+
+---
+
+## 4. Secure Coding Best Practices
+
+### Input Validation
+
+- Validate all user inputs on server side
+- Use allow-lists (whitelists) for permitted values
+- Reject or sanitize unexpected input
+
+### Output Encoding
+
+- Encode output to prevent XSS and injection attacks
+- Use context-appropriate encoding (HTML, URL, JavaScript)
+
+### Authentication and Password Management
+
+- Use strong, salted password hashing (bcrypt, Argon2)
+- Enforce strong password policies
+- Implement multi-factor authentication (MFA)
+
+### Session Management
+
+- Use secure, random session tokens
+- Set secure, HttpOnly, and SameSite cookie flags
+- Implement session timeouts and re-authentication
+
+### Access Control
+
+- Enforce least privilege
+- Use role-based access control (RBAC)
+- Validate access on every request
+
+### Cryptographic Practices
+
+- Use proven cryptographic libraries
+- Never hard-code keys or secrets
+- Rotate keys regularly
+
+### Error Handling and Logging
+
+- Do not expose sensitive information in error messages
+- Log security-relevant events securely
+- Monitor logs for suspicious activity
+
+### Data Protection
+
+- Encrypt sensitive data at rest and in transit
+- Mask or redact sensitive data in logs and UIs
+
+### Communication Security
+
+- Use HTTPS/TLS for all communications
+- Validate certificates and avoid weak ciphers
+
+### System Configuration
+
+- Harden OS and application configurations
+- Disable unnecessary services and ports
+
+### Database Security
+
+- Use parameterized queries to prevent SQL injection
+- Restrict database user privileges
+
+### File Management
+
+- Validate file uploads (type, size, content)
+- Store files outside web root
+- Scan files for malware
+
+### Memory Management
+
+- Avoid buffer overflows and memory leaks
+- Use safe functions and languages where possible
+
+### General Coding Practices
+
+- Follow secure coding guidelines (CERT, SANS)
+- Conduct regular code reviews and security testing
+
+---
+
+## 5. Secure SDLC
+
+### Agile Process
+
+- Integrate security into each sprint
+- Conduct regular threat modeling and risk assessments
+
+### Design Principles
+
+- Apply STRIDE and DREAD threat modeling
+  - **STRIDE:** Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege
+  - **DREAD:** Damage, Reproducibility, Exploitability, Affected Users, Discoverability
+
+- **LINDDUN:**  
+  - Linking, Identifying, Non-repudiation, Detecting, Data Disclosure, Unawareness, Non-compliance
+
+### Development Principles
+
+- Secure by design: anticipate and mitigate threats early
+- Use secure frameworks and libraries
+
+---
+
+## 6. Security Testing
+
+- **SAST (Static Application Security Testing):** Analyze source code for vulnerabilities
+- **DAST (Dynamic Application Security Testing):** Test running applications for vulnerabilities
+- **Fuzz Testing:** Provide random or unexpected inputs to find bugs
+
+- **Tools:**  
+  - Visual Studio Grepper for code analysis  
+  - Plugins for debugging C++ files in IDEs
+
+---
+
+## 7. Secure Coding in .NET
+
+- Use .NET security features (Code Access Security, Data Protection API)
+- Validate all inputs and outputs
+- Use secure authentication and authorization mechanisms
+- Keep .NET runtime and libraries updated
+
+---
+
+## 8. Practical Exercises and Challenges
+
+### Hands-on Practice
+
+- **Kali Linux:**  
+  - DOS attack script: https://github.com/XCHADXFAQ77X/XERXES  
+    - Clone: `sudo git clone https://github.com/XCHADXFAQ77X/XERXES`
+    - Compile: `sudo gcc -o xerxes xerxes.c`
+    - Run: `sudo ./xerxes IP PORT`
+  - Check for load balancing before attacking:  
+    - `lbd www.example.com` (checks for load balancing)
+
+- **Reconnaissance:**  
+  - Use Zenmap to scan target IPs and find open ports
+  - Identify OS and search for vulnerabilities
+
+- **Web Application Security:**  
+  - Find SQL injection vulnerabilities:  
+    - Example: https://altoro.testfire.net/login.jsp  
+    - Injection: `' OR 1 = 1 --+`
+    - Search for `php id=1`, add `'` to URL, check for errors
+
+  - Find XSS vulnerabilities:  
+    - Example:  
+      - https://www.jst-india.com/search.php?searchString=s%3Cscript%3Ealert(%22hai%22);%3C/script%3E  
+      - https://www.jst-india.com/search.php?searchString=s%3Cscript%3Ealert(document.cookie);%3C/script%3E
+
+- **Cookie Management:**  
+  - Use Cookie Editor tool for managing cookies (edit, delete, block, export/import)
+
+- **Burp Suite:**  
+  - Use for parameter mapping and web security testing
+
+- **HTTrack Website Copier:**  
+  - Copy websites for offline analysis
+
+---
+
+## 9. Additional Resources
+
+- **Application Security Training:**  
+  - https://application.security/
+  - https://www.hacksplaining.com/
+
+- **Threat Modeling Templates:**  
+  - Microsoft Threat Modeling Tool templates:  
+    - https://drive.google.com/drive/folders/1uQcduvQpIMsvjVCtmMKMyzar1OZTxMmF?usp=sharing
+
+- **Auditpol:**  
+  - Windows auditing tool:  
+    - https://www.ultimatewindowssecurity.com/wiki/page.aspx?spid=Auditpol
+
+- **Video Demos:**  
+  - Burp Suite demo: https://youtu.be/ij8jidbA6M8
+  - Threat modeling overview: https://youtu.be/tRXxW0JGlkQ
+
+---
+
+## Summary
+
+This 2-day session covers the fundamentals and advanced topics of secure coding practices, including the SSDLC, secure design and development principles, cryptographic best practices, and hands-on exercises. By following these guidelines and leveraging the provided tools and resources, developers can significantly reduce the risk of vulnerabilities in their
